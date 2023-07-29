@@ -1,5 +1,8 @@
 const routes = {
   PHOTOGRAPHERS: "/photographers",
+  PHOTOGRAPHER: "/photographers/:id",
+  MEDIA: "/photographers/:id/photos",
+  CONTACT: "/contact/:id",
 };
 
-module.exports = routes;
+export default routes;
