@@ -6,7 +6,12 @@ import {
   getPhotographer,
   getPhotographers,
 } from "./controllers/photographers.mjs";
-import { getMediaByPhotographer } from "./controllers/media.mjs";
+import {
+  getAvatarByPhotographer,
+  getPhotographerImages,
+  getPhotographerVideos,
+  getVideoDetails,
+} from "./controllers/media.mjs";
 import { postContactForm } from "./controllers/contact.mjs";
 
 const whitelist = ["http://localhost:5173"];
@@ -38,9 +43,14 @@ app.use(bodyParser.json());
 app.use(logRequestTime);
 app.use(cors(corsOptions));
 
+app.use("/public", express.static("public"));
+
 app.get(routes.PHOTOGRAPHERS, getPhotographers);
 app.get(routes.PHOTOGRAPHER, getPhotographer);
-app.get(routes.MEDIA, getMediaByPhotographer);
+app.get(routes.IMAGES, getPhotographerImages);
+app.get(routes.VIDEOS, getPhotographerVideos);
+app.get(routes.VIDEO_DETAILS, getVideoDetails);
+app.get(routes.AVATAR, getAvatarByPhotographer);
 
 app.post(routes.CONTACT, postContactForm);
 

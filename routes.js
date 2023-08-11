@@ -1,7 +1,10 @@
 const routes = {
   PHOTOGRAPHERS: "/photographers",
   PHOTOGRAPHER: "/photographers/:id",
-  MEDIA: "/photographers/:id/photos",
+  IMAGES: "/photographers/:id/images",
+  VIDEOS: "/photographers/:id/videos",
+  VIDEO_DETAILS: "/videos/:id",
+  AVATAR: "/photographers/:id/avatar",
   CONTACT: "/contact/:id",
 };
 
