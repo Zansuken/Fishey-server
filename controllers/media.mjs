@@ -118,24 +118,6 @@ export const getPhotographerVideos = (req, res) => {
   }
 };
 
-// get video details
-export const getVideoDetails = (req, res) => {
-  const id = req.params.id;
-
-  try {
-    const media = database.media.filter((media) => media.id == id);
-
-    if (!media) {
-      res.status(404).send("media not found");
-      return;
-    }
-
-    res.send(media);
-  } catch (error) {
-    console.log(`getVideoDetails: ${error}`);
-  }
-};
-
 export const getAvatarByPhotographer = (req, res) => {
   const id = req.params.id;
 
