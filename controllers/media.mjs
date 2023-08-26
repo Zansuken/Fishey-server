@@ -142,3 +142,51 @@ export const getAvatarByPhotographer = (req, res) => {
     console.log(`getAvatarByPhotographer: ${error}`);
   }
 };
+
+export const updateMediaLikes = (req, res) => {
+  const mediaId = req.params.mediaId;
+  const sessionId = req.params.sessionId;
+
+  let media = database.media.find((media) => media.id == mediaId);
+
+  try {
+    if (!media) {
+      res.status(404).send("Media not found");
+      return;
+    }
+
+    const likeCount = media.likes;
+
+    const isLikedByUser = media?.usersLiked?.includes(sessionId);
+
+    const usersLiked = media?.usersLiked ? media.usersLiked : [];
+
+    if (isLikedByUser) {
+      media.likes = likeCount - 1;
+      media.usersLiked = usersLiked.filter((user) => user !== sessionId);
+    } else {
+      media.likes = likeCount + 1;
+      media.usersLiked = [...usersLiked, sessionId];
+    }
+
+    database.media = database.media.map((item) =>
+      item.id === media.id ? media : item
+    );
+
+    fs.writeFileSync(
+      "./database/photographers.json",
+      JSON.stringify(database),
+      (err) => {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );
+
+    const updatedMedia = database.media.find((media) => media.id == mediaId);
+
+    res.send(JSON.stringify({ media: updatedMedia }));
+  } catch (error) {
+    console.log(`updateMediaLikes: ${error}`);
+  }
+};

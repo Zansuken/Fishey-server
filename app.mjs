@@ -10,6 +10,7 @@ import {
   getAvatarByPhotographer,
   getPhotographerImages,
   getPhotographerVideos,
+  updateMediaLikes,
 } from "./controllers/media.mjs";
 import { postContactForm } from "./controllers/contact.mjs";
 
@@ -48,6 +49,7 @@ app.get(routes.PHOTOGRAPHERS, getPhotographers);
 app.get(routes.PHOTOGRAPHER, getPhotographer);
 app.get(routes.IMAGES, getPhotographerImages);
 app.get(routes.VIDEOS, getPhotographerVideos);
+app.put(routes.LIKES, updateMediaLikes);
 app.get(routes.AVATAR, getAvatarByPhotographer);
 
 app.post(routes.CONTACT, postContactForm);
