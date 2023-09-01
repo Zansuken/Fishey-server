@@ -6,22 +6,6 @@ import {
 } from "../helpers/media.mjs";
 import fs from "fs";
 
-const generateThumbnail = (path) => {
-  Ffmpeg("/path/to/video.mp4")
-    .on("filenames", function (filenames) {
-      console.log("Will generate " + filenames.join(", "));
-    })
-    .on("end", function () {
-      console.log("Screenshots taken");
-    })
-    .screenshots({
-      count: 1,
-      folder: "/path/to/thumbnails",
-      size: "320x240",
-      filename: "thumbnail.png",
-    });
-};
-
 export const getPhotographerImages = (req, res) => {
   const id = req.params.id;
   const photographer = database.photographers.find(

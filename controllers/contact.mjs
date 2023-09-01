@@ -17,8 +17,6 @@ export const postContactForm = (req, res) => {
     return;
   }
 
-  console.log(req);
-
   const { firstName, lastName, email, message } = req.body;
   const contact = { firstName, lastName, email, message };
 
